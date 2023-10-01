@@ -10,6 +10,12 @@ Before you begin, ensure you have met the following requirements:
 - Python 3 installed
 - pip3 installed
 - A code editor (e.g., Visual Studio Code, Sublime Text)
+- PostgreSQL installed and configured
+  - Host: localhost
+  - Port: 5432
+  - User: postgres
+  - Password: [Your_Password]
+  - Database: flask_db
 
 ## Getting Started
 
@@ -48,13 +54,14 @@ To get this project up and running, follow these steps:
 
    ```pip freeze > requirements.txt```
 
-5. Create a local PostgreSQL database named flask_db with the following settings:
+5. Create a local PostgreSQL database (if you don't have it already) named flask_db with the following settings:
 
    Host: localhost <br /> 
    Port: 5432 <br /> 
    User: postgres <br /> 
    Password: password <br /> 
-   Database: flask_db <br /> 
+   Database: flask_db <br />
+   
 6. In terminal run
    ```bash
    psql postgresql://postgres:password@localhost/flask_db
@@ -64,12 +71,10 @@ To get this project up and running, follow these steps:
 7. Ensure that the database settings in your `config.py` file match the configuration of your local PostgreSQL database (`flask_db`). You can find the `config.py` file in your Flask application's codebase.
 
 8. Run the following commands to apply migrations and create database tables: <br /> 
-(you might be asked to run ```export APP_SETTINGS=config.Config``` before this  )
 
-   ```bash 
+   ```bash
+   export APP_SETTINGS=config.Config
    flask db init
-   flask db migrate
-   flask db upgrade 
    ```
 
 9.  Go to file migrations/alembic and after  [alembic] add
@@ -95,4 +100,4 @@ OR
    bash start.sh
 ```
 
-Your Flask application should now be running at `http://127.0.0.1:5000/`.
+Flask application should now be running at `http://127.0.0.1:5000/`.
