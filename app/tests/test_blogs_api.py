@@ -2,19 +2,34 @@ import requests
 
 
 def test_fetching_blogs_for_authenticated_user():
-    url = "http://127.0.0.1:5000/api/blog/"
-
-    headers = {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTYzMzgyOTcsImlhdCI6MTY5NjE2NTQ5Nywic3ViIjoidGVzdF91c2VyXzEifQ.sddCG1JAdd5UsR71IrpsW-ZQ6syyqzeRBNdkfu22EHQ"
+    data = {
+        'username': 'test_user_1',
+        'email': 'test@test.com',
+        'first_name': 'test',
+        'last_name': 'user',
+        'password': 'Test123!',
     }
 
-    resp = requests.get(url='http://127.0.0.1:5000/api/blog',
+
+    login_resp = requests.post(
+        url='http://127.0.0.1:5000/api/auth/login',
+        json=data
+    )
+    if login_resp.status_code == 200:
+        auth_token = login_resp.json().get("auth_token")
+        print("Login successful. Auth token:", auth_token)
+
+        headers = {"Authorization": f"Bearer {auth_token}"}
+
+    url = "http://127.0.0.1:5000/api/blog/"
+
+    resp = requests.get(url=url,
                         headers=headers)
     print(resp.json())
 import requests
 
 def test_updating_blogs_for_authenticated_user():
-    # Register a user and obtain the authentication token
+    # Login a user and obtain the authentication token
     data = {
         'username': 'test_user_1',
         'email': 'test@test.com',
@@ -141,6 +156,7 @@ def test_creating_blogs_for_authenticated_user():
         print("Login failed. Response:", login_resp.text)
 
 if __name__ == "__main__":
+    test_fetching_blogs_for_authenticated_user()
     test_updating_blogs_for_authenticated_user()
     # test_updating_blogs_for_authenticated_user()
     # test_deleting_blogs_for_authenticated_user()
