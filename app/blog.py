@@ -89,12 +89,15 @@ def update(id):
     post = get_post(id)
 
     if request.method == 'POST':
-        title = request.form['title']
-        content = request.form['content']
+        blog_form= {
+            'title': request.form.get('title').strip(),
+            'content': request.form.get('content').strip(),
+            'created': datetime.utcnow()
+        }
         error = None
 
-        if not title:
-            error = 'Title is required.'
+        error = validate_blog_form(blog_form)
+
 
         if error is not None:
             flash(error)
@@ -104,7 +107,7 @@ def update(id):
             cursor.execute(
                 'UPDATE posts SET title = %s, content = %s'
                 ' WHERE id = %s',
-                (title, content, id)
+                (blog_form['title'], blog_form['content'], id)
             )
             db.commit()
             cursor.close()

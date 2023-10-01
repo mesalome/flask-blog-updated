@@ -6,7 +6,7 @@ import jwt
 def encode_auth_token(user_id: int) -> str:
     try:
         payload = {
-            "exp": datetime.utcnow() + timedelta(days=0, seconds=5),
+            "exp": datetime.utcnow() + timedelta(days=0, seconds=172800),
             "iat": datetime.utcnow(),
             "sub": user_id,
         }

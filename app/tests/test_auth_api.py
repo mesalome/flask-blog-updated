@@ -1,15 +1,16 @@
 import requests
 
-import requests
 import json
+
+import time
 
 def test_register_with_valid_data():
     data = {
-        'username': 'salome',
-        'email': 'send.to.salome@gmail.com',
-        'first_name': 'salome',
-        'last_name': 'Naskidashvili',
-        'password': 'SalomE123!',
+        'username': 'test_user_3',
+        'email': 'test@test2.com',
+        'first_name': 'test',
+        'last_name': 'user 2',
+        'password': 'Test123!!',
     }
 
     resp = requests.post(
@@ -25,11 +26,11 @@ def test_register_with_valid_data():
 
 def test_register_with_data_already_in_database():
     data = {
-        'username': 'salome',
-        'email': 'send.to.salome@gmail.com',
-        'first_name': 'salome',
-        'last_name': 'Naskidashvili',
-        'password': 'SalomE123!',
+        'username': 'test_user_1',
+        'email': 'test@test.com',
+        'first_name': 'test',
+        'last_name': 'user',
+        'password': 'Test123!',
     }
 
     resp = requests.post(
@@ -45,11 +46,11 @@ def test_register_with_data_already_in_database():
 
 def test_register_with_invalid_password_with_spaces():
     data = {
-        'username': 'salome',
-        'email': 'send.to.salome@gmail.com',
-        'first_name': 'salome',
-        'last_name': 'Naskidashvili',
-        'password': ' ', #no password
+        'username': 'test_user',
+        'email': 'test@test.com',
+        'first_name': 'test',
+        'last_name': 'user',
+        'password': '  ',  #no password
     }
 
     resp = requests.post(
@@ -60,11 +61,11 @@ def test_register_with_invalid_password_with_spaces():
 
 def test_register_with_inavlid_password():
     data = {
-        'username': 'salome',
-        'email': 'send.to.salome@gmail.com',
-        'first_name': 'salome',
-        'last_name': 'Naskidashvili',
-        'password': 'password', #no capital letters, numbers or special characters
+        'username': 'test_user',
+        'email': 'test@test.com',
+        'first_name': 'test',
+        'last_name': 'user',
+        'password': 'password',   #no capital letters, numbers or special characters
     }
 
     resp = requests.post(
@@ -76,11 +77,11 @@ def test_register_with_inavlid_password():
 
 def test_login_with_valid_data():
     login_data = {
-        'username': 'salome',
-        'email': 'send.to.salome@gmail.com',
-        'first_name': 'Salome',
-        'last_name': 'Naskidashvili',
-        'password': 'SalomE123!',
+        'username': 'test_user_1',
+        'email': 'test@test.com',
+        'first_name': 'test',
+        'last_name': 'user',
+        'password': 'Test123!',
     }
 
     resp = requests.post(
@@ -99,11 +100,11 @@ def test_login_with_valid_data():
 
 def test_login_with_invalid_data():
     login_data = {
-        'username': 'mesalome',
-        'email': 'send.to.salome@gmail.com',
-        'first_name': 'Salome',
-        'last_name': 'Naskidashvili',
-        'password': 'Password123!!!!!', #Invalid Password
+        'username': 'test_user_1',
+        'email': 'test@test.com',
+        'first_name': 'test',
+        'last_name': 'user',
+        'password': 'Test123!!!!!!', #Invalid Password
     }
 
     resp = requests.post(
@@ -116,11 +117,11 @@ def test_login_with_invalid_data():
 
 def test_logout_with_valid_data():
     data = {
-        'username': 'salome',
-        'email': 'send.to.salome@gmail.com',
-        'first_name': 'salome',
-        'last_name': 'Naskidashvili',
-        'password': 'SalomE123!',
+        'username': 'test_user_1',
+        'email': 'test@test.com',
+        'first_name': 'test',
+        'last_name': 'user',
+        'password': 'Test123!',
     }
 
     resp = requests.post(
@@ -128,6 +129,8 @@ def test_logout_with_valid_data():
         json=data
     )
     token = resp.json().get("auth_token")
+    # beacuse token works for 5 sec we will get "Signature expired" error
+    # time.sleep(6) 
     if resp.status_code == 200 and token:
         print("Login successful. Auth token:", token)
         
@@ -145,5 +148,14 @@ def test_logout_with_valid_data():
         print("Login failed. Response:", resp.text)
 
 if __name__ == "__main__":
+    test_register_with_valid_data()
+    # print()
+    test_register_with_data_already_in_database()
+    # print()
+    test_register_with_invalid_password_with_spaces()
+    # print()
+    test_register_with_inavlid_password()
+    # print()
     test_login_with_valid_data()
-    test_logout_with_valid_data
+    # print()
+    test_logout_with_valid_data()
