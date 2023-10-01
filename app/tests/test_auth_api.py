@@ -5,11 +5,11 @@ import json
 
 def test_register_with_valid_data():
     data = {
-        'username': 'salomee',
+        'username': 'salome',
+        'email': 'send.to.salome@gmail.com',
         'first_name': 'salome',
         'last_name': 'Naskidashvili',
-        'email': 'send.to.salome@gmail.com',
-        'password': 'SalomE123!'
+        'password': 'SalomE123!',
     }
 
     resp = requests.post(
@@ -26,10 +26,10 @@ def test_register_with_valid_data():
 def test_register_with_data_already_in_database():
     data = {
         'username': 'salome',
+        'email': 'send.to.salome@gmail.com',
         'first_name': 'salome',
         'last_name': 'Naskidashvili',
-        'email': 'send.to.salome@gmail.com',
-        'password': 'SalomE123!'
+        'password': 'SalomE123!',
     }
 
     resp = requests.post(
@@ -46,10 +46,10 @@ def test_register_with_data_already_in_database():
 def test_register_with_invalid_password_with_spaces():
     data = {
         'username': 'salome',
+        'email': 'send.to.salome@gmail.com',
         'first_name': 'salome',
         'last_name': 'Naskidashvili',
-        'email': 'send.to.salome@gmail.com',
-        'password': ' ' #no password
+        'password': ' ', #no password
     }
 
     resp = requests.post(
@@ -61,10 +61,10 @@ def test_register_with_invalid_password_with_spaces():
 def test_register_with_inavlid_password():
     data = {
         'username': 'salome',
+        'email': 'send.to.salome@gmail.com',
         'first_name': 'salome',
         'last_name': 'Naskidashvili',
-        'email': 'send.to.salome@gmail.com',
-        'password': 'password' #no capital letters, numbers or special characters
+        'password': 'password', #no capital letters, numbers or special characters
     }
 
     resp = requests.post(
@@ -76,11 +76,11 @@ def test_register_with_inavlid_password():
 
 def test_login_with_valid_data():
     login_data = {
-        'username': 'mesalome',
+        'username': 'salome',
+        'email': 'send.to.salome@gmail.com',
         'first_name': 'Salome',
         'last_name': 'Naskidashvili',
-        'email': 'send.to.salome@gmail.com',
-        'password': 'Password123!'
+        'password': 'SalomE123!',
     }
 
     resp = requests.post(
@@ -100,10 +100,10 @@ def test_login_with_valid_data():
 def test_login_with_invalid_data():
     login_data = {
         'username': 'mesalome',
+        'email': 'send.to.salome@gmail.com',
         'first_name': 'Salome',
         'last_name': 'Naskidashvili',
-        'email': 'send.to.salome@gmail.com',
-        'password': 'Password123!!!!!' #Invalid Password
+        'password': 'Password123!!!!!', #Invalid Password
     }
 
     resp = requests.post(
@@ -116,11 +116,11 @@ def test_login_with_invalid_data():
 
 def test_logout_with_valid_data():
     data = {
-        'username': 'mesalome',
-        'first_name': 'Salome',
-        'last_name': 'Naskidashvili',
+        'username': 'salome',
         'email': 'send.to.salome@gmail.com',
-        'password': 'Password123!'
+        'first_name': 'salome',
+        'last_name': 'Naskidashvili',
+        'password': 'SalomE123!',
     }
 
     resp = requests.post(
@@ -146,4 +146,4 @@ def test_logout_with_valid_data():
 
 if __name__ == "__main__":
     test_login_with_valid_data()
-    test_logout_with_valid_data()
+    test_logout_with_valid_data
