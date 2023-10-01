@@ -62,26 +62,27 @@ To get this project up and running, follow these steps:
    Password: password <br /> 
    Database: flask_db <br />
    
-6. In terminal run
+<!-- In terminal run
    ```bash
    psql postgresql://postgres:password@localhost/flask_db
    CREATE TABLE invalidtokens(token VARCHAR(255),blacklisted_on  VARCHAR(255));
-   ```
+   ``` -->
 ## Running the Application
-7. Ensure that the database settings in your `config.py` file match the configuration of your local PostgreSQL database (`flask_db`). You can find the `config.py` file in your Flask application's codebase.
+6. Ensure that the database settings in your `config.py` file match the configuration of your local PostgreSQL database (`flask_db`). You can find the `config.py` file in your Flask application's codebase.
 
-8. Run the following commands to apply migrations and create database tables: <br /> 
+7. Run the following commands to apply migrations and create database tables: <br /> 
+
 
    ```bash
    export APP_SETTINGS=config.Config
    flask db init
    ```
 
-9.  Go to file migrations/alembic and after  [alembic] add
+8.  Go to file migrations/alembic and after  [alembic] add
    ```bash
    sqlalchemy.url = postgresql://postgres:password@localhost:5432/flask_db
    ```
-10. run commands:
+9. run commands:
 ```bash 
    flask db migrate -m "Initial migration"
    flask db upgrade 
