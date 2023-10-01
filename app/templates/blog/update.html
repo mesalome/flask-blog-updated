@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <form method="post">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{ request.form['title'] or post[1] }}" required>
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea class="form-control" id="content" name="content" rows="8" minlength="80" maxlength = "1000" >{{ request.form['content'] or post[2] }}</textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    <hr>
+    <form action="{{ url_for('blog.delete', id=post[0]) }}" method="post">
+      <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete</button>
+    </form>
+  </div>
+{% endblock %}

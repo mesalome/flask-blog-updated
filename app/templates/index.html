@@ -1,0 +1,22 @@
+{%extends "base.html"%}
+
+{% block title %}Home{% endblock %}
+
+{%block content%}
+<div class="d-flex  w-100 vh-100 text-center text-bg-dark main-part my-background" data-new-gr-c-s-check-loaded="14.1126.0" data-gr-ext-installed="">
+
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column align-items-center justify-content-center">
+
+    <main class="px-5">
+    <h1>Welcome to Our Quantori Blog Community.</h1>
+    <p class="lead px-5 py-4"><span class="px-5">Discover, connect, and share your passion. Join our vibrant blogging community where diverse voices come together to explore a world of ideas and inspiration. Start your blogging adventure today!.</span></p>
+    <p class="lead">
+        <a href="{{ url_for('about.index') }}" class="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a>
+    </p>
+    </main>
+
+    </div>
+
+</div>
+{%endblock%}
