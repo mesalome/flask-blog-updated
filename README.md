@@ -61,6 +61,13 @@ To get this project up and running, follow these steps:
    User: postgres <br /> 
    Password: password <br /> 
    Database: flask_db <br />
+
+   If you have already used same database, you can change Database name as you kike or just remove database and initialize again, go to terminal and use commands:
+      ```bash
+      psql -U postgres 
+      DROP DATABASE flask_db
+      CREATE DATABASE flask_db
+      ```
    
 <!-- In terminal run
    ```bash
@@ -102,3 +109,7 @@ OR
 ```
 
 Flask application should now be running at `http://127.0.0.1:5000/`.
+
+``` bash
+find . -name "__pycache__" -exec rm -r {} \;
+``` 
