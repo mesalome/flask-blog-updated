@@ -68,12 +68,7 @@ To get this project up and running, follow these steps:
       DROP DATABASE flask_db
       CREATE DATABASE flask_db
       ```
-   
-<!-- In terminal run
-   ```bash
-   psql postgresql://postgres:password@localhost/flask_db
-   CREATE TABLE invalidtokens(token VARCHAR(255),blacklisted_on  VARCHAR(255));
-   ``` -->
+
 ## Running the Application
 6. Ensure that the database settings in your `config.py` file match the configuration of your local PostgreSQL database (`flask_db`). You can find the `config.py` file in your Flask application's codebase.
 
