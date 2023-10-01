@@ -68,8 +68,6 @@ To get this project up and running, follow these steps:
 
    ```bash 
    flask db init
-   flask db migrate
-   flask db upgrade 
    ```
 
 9.  Go to file migrations/alembic and after  [alembic] add
