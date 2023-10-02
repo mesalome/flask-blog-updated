@@ -3,6 +3,10 @@
 This is a simple Flask project that serves as a starting point for your web application. 
 It includes instructions on how to set up and run the project.
 
+## Youtube Links
+[Application presentation - General](https://youtu.be/TJjMjcPEhCs).
+[Application presentation - APIs testing](https://youtu.be/vaXBGEBV8s4).
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
