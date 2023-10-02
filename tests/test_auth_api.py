@@ -124,6 +124,7 @@ def test_logout_with_valid_data():
         'password': 'Test123!',
     }
 
+
     resp = requests.post(
         url='http://127.0.0.1:5000/api/auth/login',
         json=data
@@ -149,13 +150,15 @@ def test_logout_with_valid_data():
 
 if __name__ == "__main__":
     test_register_with_valid_data()
-    # print()
+    print()
     test_register_with_data_already_in_database()
-    # print()
+    print()
     test_register_with_invalid_password_with_spaces()
-    # print()
+    print()
     test_register_with_inavlid_password()
-    # print()
+    print()
     test_login_with_valid_data()
-    # print()
+    print()
+    test_login_with_invalid_data()
+    print()
     test_logout_with_valid_data()

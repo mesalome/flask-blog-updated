@@ -35,7 +35,7 @@ def index():
         "posts": posts
     }
 
-    return make_response(jsonify(response ))
+    return make_response(jsonify(response )), 200
 
 @blog_blueprint.route("/<int:id>/update", methods=["GET", "POST"])
 def update(id):

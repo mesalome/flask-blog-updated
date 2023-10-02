@@ -21,12 +21,18 @@ def test_fetching_blogs_for_authenticated_user():
 
         headers = {"Authorization": f"Bearer {auth_token}"}
 
-    url = "http://127.0.0.1:5000/api/blog/"
+        url = "http://127.0.0.1:5000/api/blog/"
 
-    resp = requests.get(url=url,
-                        headers=headers)
-    print(resp.json())
-import requests
+        resp = requests.get(url=url,
+                            headers=headers)
+        
+        if resp.status_code == 200:
+            print("Blogs fetched successfully.")
+            print(resp.json())  # Print the fetched blogs
+        else:
+            print("Failed to fetch blogs. Response:", resp.text)
+    else:
+        print("Login failed. Response:", login_resp.text)
 
 def test_updating_blogs_for_authenticated_user():
     # Login a user and obtain the authentication token
@@ -50,7 +56,7 @@ def test_updating_blogs_for_authenticated_user():
         headers = {"Authorization": f"Bearer {auth_token}"}
 
         # Specifying the blog post data to create
-        post_id = 2
+        post_id = 1
         update_data = {
             'title': 'Updated Title',
             'content': '''Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -96,7 +102,7 @@ def test_deleting_blogs_for_authenticated_user():
         headers = {"Authorization": f"Bearer {auth_token}"}
 
         # Specify the blog data to delete
-        post_id = 2  # ID of the blog 
+        post_id = 1  # ID of the blog 
 
         # POST request to delete the blog
         url = f"http://127.0.0.1:5000/api/blog/{post_id}/delete"
@@ -157,7 +163,9 @@ def test_creating_blogs_for_authenticated_user():
 
 if __name__ == "__main__":
     test_fetching_blogs_for_authenticated_user()
+    print()
     test_updating_blogs_for_authenticated_user()
-    # test_updating_blogs_for_authenticated_user()
-    # test_deleting_blogs_for_authenticated_user()
-    # test_creating_blogs_for_authenticated_user()
+    print()
+    test_deleting_blogs_for_authenticated_user()
+    print()
+    test_creating_blogs_for_authenticated_user()

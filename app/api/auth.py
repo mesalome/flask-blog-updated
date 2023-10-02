@@ -32,8 +32,7 @@ def register():
     email = post_data['email']  
     
     # Checks if the user with the given email already exists
-    username = post_data['email']  
-    if is_user_already_registered(username):
+    if is_user_already_registered(email):
         response = {
             "status": "fail",
             "message": f"{email} has already been used."
